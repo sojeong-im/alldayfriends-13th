@@ -29,18 +29,34 @@ import {
 } from './data/formQuestions';
 import CrewPassCard from './components/CrewPassCard';
 import ActivityGallery from './components/ActivityGallery';
+import AdminDashboard from './components/AdminDashboard';
 import posterImg from './assets/poster.jpg';
 import { db } from './firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export default function App() {
-  // 'home' (첫 진입 버튼 2개만) | 'form' (신청폼 전용) | 'gallery' (사진첩 전용)
-  const [currentPage, setCurrentPage] = useState('home');
+  // 'home' | 'form' | 'gallery' | 'admin'
+  const [currentPage, setCurrentPage] = useState(() => {
+    return window.location.hash === '#admin' ? 'admin' : 'home';
+  });
   const [currentStep, setCurrentStep] = useState(1);
   const [showMobilePass, setShowMobilePass] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPosterModal, setShowPosterModal] = useState(false);
+
+  // URL hash (#admin) 실시간 감지
+  React.useEffect(() => {
+    const handleHash = () => {
+      if (window.location.hash === '#admin') {
+        setCurrentPage('admin');
+      } else if (currentPage === 'admin' && window.location.hash !== '#admin') {
+        setCurrentPage('home');
+      }
+    };
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, [currentPage]);
 
   // 폼 상태
   const [formData, setFormData] = useState({
@@ -1033,9 +1049,29 @@ export default function App() {
         </div>
       )}
 
-      {/* 푸터 미니 카피 */}
-      <footer className="text-center py-4 text-[11px] text-slate-400 font-medium">
-        ALL DAY FRIENDS 13th Official
+      {/* 🌟 4. 관리자 대시보드 페이지 (비밀번호: 00347) */}
+      {currentPage === 'admin' && (
+        <AdminDashboard 
+          onGoHome={() => {
+            setCurrentPage('home');
+            window.location.hash = '';
+          }} 
+        />
+      )}
+
+      {/* 푸터 미니 카피 & 관리자 링크 */}
+      <footer className="text-center py-4 text-[11px] text-slate-400 font-medium flex items-center justify-center gap-2">
+        <span>ALL DAY FRIENDS 13th Official</span>
+        <span>·</span>
+        <button
+          onClick={() => {
+            setCurrentPage('admin');
+            window.location.hash = 'admin';
+          }}
+          className="hover:text-slate-700 underline decoration-slate-300 underline-offset-2 cursor-pointer"
+        >
+          관리자 모드
+        </button>
       </footer>
     </div>
   );
