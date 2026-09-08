@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  }
+}
+
+.font-marker {
+  font-family: 'Permanent Marker', cursive;
+}
+
+.font-hand {
+  font-family: 'Gaegu', cursive;
+}
+
+.font-outfit {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* 마스킹 테이프 효과 */
+.tape-yellow {
+  background: rgba(254, 240, 138, 0.85);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  clip-path: polygon(2% 0%, 98% 0%, 100% 100%, 0% 100%);
+}
+
+.tape-pink {
+  background: rgba(244, 114, 182, 0.85);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  clip-path: polygon(0% 0%, 100% 3%, 98% 97%, 2% 100%);
+}
+
+.tape-green {
+  background: rgba(134, 239, 172, 0.85);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  clip-path: polygon(3% 2%, 97% 0%, 100% 98%, 0% 100%);
+}
+
+.tape-blue {
+  background: rgba(147, 197, 253, 0.85);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  clip-path: polygon(1% 0%, 99% 1%, 97% 100%, 2% 98%);
+}
+
+/* 스크랩북 격자 종이 텍스처 배경 */
+.paper-grid {
+  background-color: #FAF7F0;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* 크루 패스 폴라로이드 그림자 */
+.polaroid-shadow {
+  box-shadow: 
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
+}
