@@ -183,7 +183,7 @@ export default function App() {
                 </span>
               </div>
               <p className="text-xs text-slate-500 font-medium mt-0.5">
-                청춘의 주말과 여가를 채우는 13기 소모임 신청
+                청춘의 주말과 여가를 채우는 13기 동아리 신청
               </p>
             </div>
           </div>

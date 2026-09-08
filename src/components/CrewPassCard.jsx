@@ -36,7 +36,7 @@ export default function CrewPassCard({ formData, isModal = false }) {
             <Sparkles className="w-4 h-4 text-yellow-300 animate-pulse" />
           </h2>
           <p className="text-xs text-white/80 font-medium mt-0.5">
-            청춘들의 다채로운 일상과 취향을 잇는 소모임
+            청춘들의 다채로운 일상과 취향을 잇는 동아리
           </p>
         </div>
 
