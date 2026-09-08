@@ -16,12 +16,19 @@ import jengaImg from '../assets/gallery/activity-jenga.jpg';
 import bowlingImg from '../assets/gallery/activity-bowling.jpg';
 import dartPlayImg from '../assets/gallery/activity-dart-play.jpg';
 
-// 3차 신규 추가 이미지
+// 3차 이미지
 import graffitiCafeImg from '../assets/gallery/activity-graffiti-cafe.jpg';
 import popupGoodsImg from '../assets/gallery/activity-popup-goods.jpg';
 import manuscriptImg from '../assets/gallery/activity-manuscript.jpg';
 import photoBoothImg from '../assets/gallery/activity-photo-booth.jpg';
 import picnicVerticalImg from '../assets/gallery/activity-picnic-vertical.jpg';
+
+// 4차 신규 이미지
+import clueBoardgameImg from '../assets/gallery/activity-clue-boardgame.jpg';
+import knittingImg from '../assets/gallery/activity-knitting.jpg';
+import bangGameImg from '../assets/gallery/activity-bang-game.jpg';
+import cakeCardImg from '../assets/gallery/activity-cake-card.jpg';
+import dinnerPartyImg from '../assets/gallery/activity-dinner-party.jpg';
 
 export default function ActivityGallery({ onGoToForm }) {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
@@ -29,198 +36,283 @@ export default function ActivityGallery({ onGoToForm }) {
 
   const categories = [
     { id: 'ALL', label: '전체 모아보기', icon: '✨' },
-    { id: 'POPUP', label: '팝업 & 전시', icon: '🛍️' },
-    { id: 'CAFE', label: '카페 & 맛집', icon: '☕' },
+    { id: 'GAME', label: '보드게임 & 추리', icon: '🎲' },
+    { id: 'CAFE', label: '카페 & 맛집 & 푸드', icon: '☕' },
+    { id: 'POPUP', label: '팝업 & 공방 & 원데이', icon: '🛍️' },
     { id: 'BOOK', label: '영화 & 책 & 힐링', icon: '📖' },
-    { id: 'GAME', label: '게임 & 보드게임', icon: '🎮' },
-    { id: 'ACTIVITY', label: '액티비티 & 스포츠', icon: '🎳' },
+    { id: 'ACTIVITY', label: '스포츠 & 이색체험', icon: '🎯' },
   ];
 
   const photos = [
-    // 팝업 & 전시
+    // 1. 야외 잔디밭 클루 보드게임 (포스터 메인 컷)
     {
       id: 1,
+      category: 'GAME',
+      img: clueBoardgameImg,
+      title: '돗자리 펴고 잔디밭에서 즐기는 추리 보드게임 CLUE!',
+      tape: 'tape-green',
+      tapeText: 'GAME HERO',
+      rotate: 'rotate-[-2deg]',
+      tag: '보드게임 🎲',
+      desc: '포스터 메인 장식컷! 시원한 바람 맞으며 머리 맞대고 단서 추리하는 꿀잼 순간.',
+    },
+
+    // 2. 디저트 케이크 & 카드게임
+    {
+      id: 2,
+      category: 'CAFE',
+      img: cakeCardImg,
+      title: '달콤한 딸기 초코 케이크와 함께하는 카드 대결',
+      tape: 'tape-yellow',
+      tapeText: 'SWEET & PLAY',
+      rotate: 'rotate-[2deg]',
+      tag: '카페 & 디저트 🍰',
+      desc: '꾸덕한 케이크와 따뜻한 커피 한 잔, 그리고 손에 땀을 쥐는 카드 한판!',
+    },
+
+    // 3. 뜨개질 공방 원데이 클래스
+    {
+      id: 3,
+      category: 'POPUP',
+      img: knittingImg,
+      title: '도란도란 모여 뜨는 코바늘 뜨개질 힐링 타임',
+      tape: 'tape-pink',
+      tapeText: 'HANDMADE CROCHET',
+      rotate: 'rotate-[-1deg]',
+      tag: '공방 클래스 🧶',
+      desc: '색색의 털실과 코바늘로 나만의 귀여운 소품 만들기! 시간 가는 줄 모르는 집중 모드.',
+    },
+
+    // 4. 모듬 회 & 전골 뒤풀이 만찬
+    {
+      id: 4,
+      category: 'CAFE',
+      img: dinnerPartyImg,
+      title: '신선한 모듬 회와 얼큰한 전골 라면 파티!',
+      tape: 'tape-blue',
+      tapeText: 'DINNER FEAST',
+      rotate: 'rotate-[2deg]',
+      tag: '맛집 & 먹방 🍣',
+      desc: '활동 끝나고 다같이 모여 맛있는 회와 따끈한 국물로 완벽한 하루 마무리!',
+    },
+
+    // 5. 뱅(BANG!) 서부극 카드게임
+    {
+      id: 5,
+      category: 'GAME',
+      img: bangGameImg,
+      title: '서부 총잡이들의 치열한 심리전! 뱅(BANG!)',
+      tape: 'tape-yellow',
+      tapeText: 'WILD WEST BANG',
+      rotate: 'rotate-[-3deg]',
+      tag: '카드 보드게임 🃏',
+      desc: '보안관은 누구인가? 음료수 잔 채워놓고 서로 의심하며 웃음 터지는 심리 대결.',
+    },
+
+    // 6. 팝업 포토부스
+    {
+      id: 6,
       category: 'POPUP',
       img: photoBoothImg,
       title: '감성 팝업스토어 영수증 포토부스 인증샷!',
       tape: 'tape-pink',
       tapeText: 'POP-UP BOOTH',
-      rotate: 'rotate-[-2deg]',
+      rotate: 'rotate-[1deg]',
       tag: '팝업 & 전시 🛍️',
       desc: '"나랑 셀카 찍자!" 성수 소품샵 & 팝업에서 귀여운 캐릭터와 함께 찰칵 📸',
     },
+
+    // 7. 팝업 굿즈
     {
-      id: 2,
+      id: 7,
       category: 'POPUP',
       img: popupGoodsImg,
       title: '핫플 팝업 굿즈 득템! 크루 단체 인증',
-      tape: 'tape-yellow',
+      tape: 'tape-green',
       tapeText: 'ENLUMIO GOODS',
-      rotate: 'rotate-[2deg]',
+      rotate: 'rotate-[-2deg]',
       tag: '전시 & 굿즈 ✨',
       desc: '웨이팅 뚫고 함께 구경한 트렌디 팝업 브랜드 굿즈! 다같이 모여서 인증샷 완성.',
     },
+
+    // 8. 우정 팔찌 공방
     {
-      id: 3,
+      id: 8,
       category: 'POPUP',
       img: braceletImg,
       title: '세상에 하나뿐인 크루 우정 팔찌 & 링 공방',
-      tape: 'tape-green',
+      tape: 'tape-blue',
       tapeText: 'FRIENDSHIP RING',
-      rotate: 'rotate-[-1deg]',
+      rotate: 'rotate-[2deg]',
       tag: '공방 클래스 💍',
       desc: '다같이 손 모아 만든 반짝이는 은빛 하트 팔찌! 소중한 사람들과 특별한 추억 만들기.',
     },
 
-    // 영화 & 책 & 힐링
+    // 9. 원고지 북토크
     {
-      id: 4,
+      id: 9,
       category: 'BOOK',
       img: manuscriptImg,
       title: '돗자리 펴고 원고지 글쓰기 & 낭만 북토크',
-      tape: 'tape-blue',
+      tape: 'tape-yellow',
       tapeText: 'BOOK & ESSAY',
-      rotate: 'rotate-[2deg]',
+      rotate: 'rotate-[-1deg]',
       tag: '영화 & 책 📖',
       desc: '감성 미니 라디오 켜두고 바람 쐬며 적어보는 나만의 원고지와 소소한 생각 나눔.',
     },
 
-    // 카페 & 맛집
+    // 10. 카페 디저트 투어
     {
-      id: 5,
+      id: 10,
       category: 'CAFE',
       img: cafeImg,
       title: '비주얼 폭발! 감성 카페 디저트 & 음료 투어',
-      tape: 'tape-yellow',
+      tape: 'tape-pink',
       tapeText: 'CAFE & SWEETS',
-      rotate: 'rotate-[-3deg]',
+      rotate: 'rotate-[3deg]',
       tag: '카페 & 맛집 ☕',
       desc: '크림 듬뿍 아인슈페너와 티라미수, 모히토까지! 달콤한 디저트와 함께하는 힐링 수다 타임.',
     },
+
+    // 11. 그래피티 카페
     {
-      id: 6,
+      id: 11,
       category: 'CAFE',
       img: graffitiCafeImg,
       title: '힙한 그래피티 아트 카페에서 끝없는 토크',
-      tape: 'tape-pink',
+      tape: 'tape-green',
       tapeText: 'HIP VIBES',
-      rotate: 'rotate-[1deg]',
+      rotate: 'rotate-[-2deg]',
       tag: '힙플레이스 🎨',
       desc: '감각적인 그래피티 벽화 앞에서 따뜻한 음료 한잔과 함께 이야기꽃 피우기!',
     },
+
+    // 12. 한강 피크닉 1
     {
-      id: 7,
+      id: 12,
       category: 'CAFE',
       img: picnicImg,
       title: '햇살 가득 한강 피크닉 & 과자 파티',
-      tape: 'tape-green',
+      tape: 'tape-blue',
       tapeText: 'WEEKEND PICNIC',
-      rotate: 'rotate-[-2deg]',
+      rotate: 'rotate-[1deg]',
       tag: '야외 피크닉 🧺',
       desc: '돗자리 펴고 과자 잔뜩 펼쳐놓고 끝없는 수다와 힐링 타임! 꿀조합 크루들과 찰칵 ✌️',
     },
+
+    // 13. 한강 피크닉 2 (세로)
     {
-      id: 8,
+      id: 13,
       category: 'CAFE',
       img: picnicVerticalImg,
       title: '다이어리 꾸미기와 간식 털기 낭만',
-      tape: 'tape-blue',
+      tape: 'tape-yellow',
       tapeText: 'CHILL TIME',
-      rotate: 'rotate-[2deg]',
+      rotate: 'rotate-[-1deg]',
       tag: '감성 피크닉 🎈',
       desc: '얼렁뚱땅 다이어리 구경하고 과자 탑 쌓으며 보내는 완벽한 주말 오후.',
     },
 
-    // 게임 & 보드게임
+    // 14. 젠가 게임
     {
-      id: 9,
+      id: 14,
       category: 'GAME',
       img: jengaImg,
       title: '심장 쫄깃! 젠가 타워 와르르 무너지는 순간',
-      tape: 'tape-yellow',
+      tape: 'tape-pink',
       tapeText: 'JENGA TOWER',
-      rotate: 'rotate-[-1deg]',
+      rotate: 'rotate-[2deg]',
       tag: '보드게임 🧱',
       desc: '숨소리마저 죽이고 한 조각씩 빼다가 와르르! 벌칙 음료 마시기 걸고 펼쳐진 심리전.',
     },
+
+    // 15. 오락실 해머
     {
-      id: 10,
+      id: 15,
       category: 'GAME',
       img: hammerImg,
       title: '스트레스 싹 날리는 오락실 해머 파워 대결!',
-      tape: 'tape-pink',
+      tape: 'tape-green',
       tapeText: 'GAME ZONE',
-      rotate: 'rotate-[3deg]',
+      rotate: 'rotate-[-2deg]',
       tag: '오락실 대전 🔨',
       desc: '토르 망치 들고 풀스윙! 과연 오늘 최고 점수를 기록한 크루는 누구였을까요? ⚡',
     },
+
+    // 16. 보드게임 진열장
     {
-      id: 11,
+      id: 16,
       category: 'GAME',
       img: boardgameImg,
       title: '없는 게 없는 보드게임 카페 정복기',
-      tape: 'tape-green',
+      tape: 'tape-blue',
       tapeText: 'BOARD GAME',
-      rotate: 'rotate-[-2deg]',
+      rotate: 'rotate-[2deg]',
       tag: '보드게임 성지 🎲',
       desc: '할리갈리, 펭귄트랩, 다빈치코드, 클루까지! 한번 시작하면 시간 가는 줄 모르는 승부욕 🔥',
     },
 
-    // 액티비티 & 스포츠
+    // 17. 락볼링
     {
-      id: 12,
+      id: 17,
       category: 'ACTIVITY',
       img: bowlingImg,
       title: '스트라이크의 쾌감! 신나는 락볼링 대결',
-      tape: 'tape-blue',
+      tape: 'tape-yellow',
       tapeText: 'STRIKE PANG',
-      rotate: 'rotate-[2deg]',
+      rotate: 'rotate-[-3deg]',
       tag: '볼링 번개 🎳',
       desc: '핀이 시원하게 넘어갈 때의 짜릿함! 팀 나눠서 점수 내기하고 하이파이브 나누기.',
     },
+
+    // 18. 사격 번개
     {
-      id: 13,
+      id: 18,
       category: 'ACTIVITY',
       img: shootingImg,
       title: '스나이퍼 빙의! 이색 실내 사격 액티비티',
-      tape: 'tape-yellow',
+      tape: 'tape-pink',
       tapeText: 'TARGET ON',
-      rotate: 'rotate-[-2deg]',
+      rotate: 'rotate-[1deg]',
       tag: '사격 번개 🎯',
       desc: '진지한 눈빛으로 표적지 조준! 평소 못 해본 이색 액티비티도 마음 맞는 크루들과 함께라면 꿀잼!',
     },
+
+    // 19. 다트 집중
     {
-      id: 14,
+      id: 19,
       category: 'ACTIVITY',
       img: dartPlayImg,
       title: '신중하게 조준! 전자 다트 풀집중 모드',
-      tape: 'tape-pink',
+      tape: 'tape-green',
       tapeText: 'DART MATCH',
-      rotate: 'rotate-[1deg]',
+      rotate: 'rotate-[-2deg]',
       tag: '다트 게임 🎯',
       desc: '과녁 정중앙을 향해 던지는 집중의 순간! 크루들의 응원 속에 짜릿한 득점.',
     },
+
+    // 20. 다트 환호
     {
-      id: 15,
+      id: 20,
       category: 'ACTIVITY',
       img: dartImg,
       title: '환호성 폭발하는 불꽃의 다트 매치',
-      tape: 'tape-green',
+      tape: 'tape-blue',
       tapeText: 'BULLSEYE!',
-      rotate: 'rotate-[-2deg]',
+      rotate: 'rotate-[2deg]',
       tag: '전자 다트 🎯',
       desc: '마지막 1발에 걸린 디저트 쏘기 내기! 뒤에서 숨죽이고 지켜보다가 들어가는 순간 다같이 환호!',
     },
 
-    // 공식 포스터
+    // 21. 공식 포스터
     {
-      id: 16,
+      id: 21,
       category: 'ALL',
       img: posterImg,
       title: 'ALL DAY FRIENDS 13기 공식 포스터',
       tape: 'tape-yellow',
       tapeText: 'OFFICIAL POSTER',
-      rotate: 'rotate-[1deg]',
+      rotate: 'rotate-[-1deg]',
       tag: '13기 모집중 💫',
       desc: '게임, 팝업&전시, 카페&맛집, 영화&책, 야구! 5가지 테마로 꽉 채운 13기에서 함께해요.',
     },
@@ -243,14 +335,14 @@ export default function ActivityGallery({ onGoToForm }) {
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 text-rose-600 text-xs font-black mb-2">
               <Camera className="w-3.5 h-3.5" />
-              올데프 크루들의 생생한 활동 아카이브 ({photos.length}장의 추억)
+              올데프 크루들의 생생한 활동 아카이브 ({photos.length}장의 찐추억)
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight font-outfit">
               우리는 주말과 공강을 이렇게 놀아요! 📸
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-2 max-w-xl leading-relaxed">
-              성수 팝업스토어 & 영수증 사진기 투어부터 감성 카페 도장깨기, 한강 원고지 북토크,<br />
-              젠가 & 보드게임 밤샘, 볼링, 실내 사격, 다트 대결까지! 청춘들의 다채로운 일상을 만나보세요.
+              잔디밭 추리 보드게임부터 디저트 케이크 파티, 힐링 코바늘 뜨개질 공방, 회 & 라면 뒤풀이,<br />
+              성수 팝업스토어, 원고지 북토크, 락볼링, 사격, 다트까지! 청춘들의 리얼한 일상을 만나보세요.
             </p>
           </div>
 
@@ -289,7 +381,7 @@ export default function ActivityGallery({ onGoToForm }) {
         </div>
       </div>
 
-      {/* 스크랩북 폴라로이드 그리드 (총 16장) */}
+      {/* 스크랩북 폴라로이드 그리드 (총 21장) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
         {filteredPhotos.map((photo) => (
           <div
