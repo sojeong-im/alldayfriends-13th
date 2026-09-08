@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Sparkles, Camera, Heart, ArrowRight, X, ZoomIn } from 'lucide-react';
+import { Sparkles, Camera, Heart, ArrowRight, X, ZoomIn, Layers } from 'lucide-react';
+
+// 기존 이미지들
 import picnicImg from '../assets/gallery/activity-picnic.jpg';
 import hammerImg from '../assets/gallery/activity-hammer.jpg';
 import boardgameImg from '../assets/gallery/activity-boardgame.jpg';
@@ -7,32 +9,95 @@ import shootingImg from '../assets/gallery/activity-shooting.jpg';
 import dartImg from '../assets/gallery/activity-dart.jpg';
 import posterImg from '../assets/poster.jpg';
 
+// 새로 추가된 5개 이미지
+import cafeImg from '../assets/gallery/activity-cafe.jpg';
+import braceletImg from '../assets/gallery/activity-bracelet.jpg';
+import jengaImg from '../assets/gallery/activity-jenga.jpg';
+import bowlingImg from '../assets/gallery/activity-bowling.jpg';
+import dartPlayImg from '../assets/gallery/activity-dart-play.jpg';
+
 export default function ActivityGallery({ onGoToForm }) {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('ALL');
+
+  const categories = [
+    { id: 'ALL', label: '전체 모아보기', icon: '✨' },
+    { id: 'CAFE', label: '카페 & 힐링', icon: '☕' },
+    { id: 'GAME', label: '보드게임 & 오락', icon: '🎲' },
+    { id: 'ACTIVITY', label: '스포츠 & 이색체험', icon: '🎯' },
+    { id: 'MAKING', label: '공방 & 추억', icon: '💖' },
+  ];
 
   const photos = [
     {
       id: 1,
+      category: 'CAFE',
+      img: cafeImg,
+      title: '비주얼 폭발! 감성 카페 디저트 & 음료 투어',
+      tape: 'tape-yellow',
+      tapeText: 'CAFE & SWEETS',
+      rotate: 'rotate-[-2deg]',
+      tag: '카페 & 맛집 ☕',
+      desc: '크림 듬뿍 아인슈페너와 티라미수, 모히토까지! 달콤한 디저트와 함께하는 힐링 수다 타임.',
+    },
+    {
+      id: 2,
+      category: 'MAKING',
+      img: braceletImg,
+      title: '세상에 하나뿐인 크루 우정 팔찌 & 링 공방',
+      tape: 'tape-pink',
+      tapeText: 'FRIENDSHIP RING',
+      rotate: 'rotate-[2deg]',
+      tag: '공방 클래스 💍',
+      desc: '다같이 손 모아 만든 반짝이는 은빛 하트 팔찌! 소중한 사람들과 특별한 추억 만들기.',
+    },
+    {
+      id: 3,
+      category: 'CAFE',
       img: picnicImg,
       title: '햇살 가득 한강 피크닉 & 과자 파티',
-      tape: 'tape-yellow',
+      tape: 'tape-green',
       tapeText: 'WEEKEND PICNIC',
-      rotate: 'rotate-[-2deg]',
+      rotate: 'rotate-[-1deg]',
       tag: '야외 피크닉 🧺',
       desc: '돗자리 펴고 과자 잔뜩 펼쳐놓고 끝없는 수다와 힐링 타임! 꿀조합 크루들과 찰칵 ✌️',
     },
     {
-      id: 2,
+      id: 4,
+      category: 'GAME',
+      img: jengaImg,
+      title: '심장 쫄깃! 젠가 타워 와르르 무너지는 순간',
+      tape: 'tape-blue',
+      tapeText: 'JENGA TOWER',
+      rotate: 'rotate-[3deg]',
+      tag: '보드게임 🧱',
+      desc: '숨소리마저 죽이고 한 조각씩 빼다가 와르르! 벌칙 음료 마시기 걸고 펼쳐진 심리전.',
+    },
+    {
+      id: 5,
+      category: 'ACTIVITY',
+      img: bowlingImg,
+      title: '스트라이크의 쾌감! 신나는 락볼링 대결',
+      tape: 'tape-yellow',
+      tapeText: 'STRIKE PANG',
+      rotate: 'rotate-[-2deg]',
+      tag: '볼링 번개 🎳',
+      desc: '핀이 시원하게 넘어갈 때의 짜릿함! 팀 나눠서 점수 내기하고 하이파이브 나누기.',
+    },
+    {
+      id: 6,
+      category: 'GAME',
       img: hammerImg,
       title: '스트레스 싹 날리는 오락실 해머 파워 대결!',
       tape: 'tape-pink',
       tapeText: 'GAME ZONE',
-      rotate: 'rotate-[3deg]',
+      rotate: 'rotate-[2deg]',
       tag: '오락실 대전 🔨',
       desc: '토르 망치 들고 풀스윙! 과연 오늘 최고 점수를 기록한 크루는 누구였을까요? ⚡',
     },
     {
-      id: 3,
+      id: 7,
+      category: 'GAME',
       img: boardgameImg,
       title: '없는 게 없는 보드게임 카페 정복기',
       tape: 'tape-green',
@@ -42,39 +107,57 @@ export default function ActivityGallery({ onGoToForm }) {
       desc: '할리갈리, 펭귄트랩, 다빈치코드, 클루까지! 한번 시작하면 시간 가는 줄 모르는 승부욕 🔥',
     },
     {
-      id: 4,
+      id: 8,
+      category: 'ACTIVITY',
       img: shootingImg,
       title: '스나이퍼 빙의! 이색 실내 사격 액티비티',
       tape: 'tape-blue',
       tapeText: 'TARGET ON',
-      rotate: 'rotate-[2deg]',
+      rotate: 'rotate-[3deg]',
       tag: '사격 번개 🎯',
       desc: '진지한 눈빛으로 표적지 조준! 평소 못 해본 이색 액티비티도 마음 맞는 크루들과 함께라면 꿀잼!',
     },
     {
-      id: 5,
+      id: 9,
+      category: 'ACTIVITY',
+      img: dartPlayImg,
+      title: '신중하게 조준! 전자 다트 풀집중 모드',
+      tape: 'tape-yellow',
+      tapeText: 'DART MATCH',
+      rotate: 'rotate-[-2deg]',
+      tag: '다트 게임 🎯',
+      desc: '과녁 정중앙을 향해 던지는 집중의 순간! 크루들의 응원 속에 짜릿한 득점.',
+    },
+    {
+      id: 10,
+      category: 'ACTIVITY',
       img: dartImg,
       title: '환호성 폭발하는 불꽃의 다트 매치',
-      tape: 'tape-yellow',
+      tape: 'tape-pink',
       tapeText: 'BULLSEYE!',
-      rotate: 'rotate-[-3deg]',
+      rotate: 'rotate-[1deg]',
       tag: '전자 다트 🎯',
       desc: '마지막 1발에 걸린 디저트 쏘기 내기! 뒤에서 숨죽이고 지켜보다가 들어가는 순간 다같이 환호!',
     },
     {
-      id: 6,
+      id: 11,
+      category: 'ALL',
       img: posterImg,
       title: 'ALL DAY FRIENDS 13기 공식 포스터',
-      tape: 'tape-pink',
+      tape: 'tape-green',
       tapeText: 'OFFICIAL POSTER',
-      rotate: 'rotate-[1deg]',
+      rotate: 'rotate-[-1deg]',
       tag: '13기 모집중 💫',
       desc: '게임, 팝업&전시, 카페&맛집, 영화&책, 야구! 5가지 테마로 꽉 채운 13기에서 함께해요.',
     },
   ];
 
+  const filteredPhotos = selectedCategory === 'ALL' 
+    ? photos 
+    : photos.filter((p) => p.category === selectedCategory || p.category === 'ALL');
+
   return (
-    <div className="space-y-10">
+    <div className="space-y-8">
       {/* 갤러리 상단 인트로 배너 */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-slate-900 shadow-sm relative overflow-hidden">
         {/* 데코 마스킹 테이프 */}
@@ -86,14 +169,14 @@ export default function ActivityGallery({ onGoToForm }) {
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 text-rose-600 text-xs font-black mb-2">
               <Camera className="w-3.5 h-3.5" />
-              올데프 크루들의 생생한 일상
+              올데프 크루들의 생생한 활동 아카이브
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight font-outfit">
               우리는 주말과 공강을 이렇게 놀아요! 📸
             </h2>
-            <p className="text-sm text-slate-600 mt-2 max-w-xl leading-relaxed">
-              한강 돗자리 피크닉부터 오락실 배틀, 보드게임 밤샘, 이색 사격 & 다트까지!<br />
-              취향 맞는 대학생 크루들이 모여 만든 진짜 꿀잼 순간들을 모아봤어요.
+            <p className="text-xs sm:text-sm text-slate-600 mt-2 max-w-xl leading-relaxed">
+              감성 카페 도장깨기부터 한강 피크닉, 공방 원데이 클래스, 젠가 & 보드게임 밤샘, 볼링, 사격, 다트까지!<br />
+              취향 맞는 청춘들이 모여 만든 진짜 꿀잼 순간들을 모아봤어요.
             </p>
           </div>
 
@@ -105,11 +188,36 @@ export default function ActivityGallery({ onGoToForm }) {
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
+
+        {/* 카테고리 필터 칩 */}
+        <div className="mt-6 pt-5 border-t border-dashed border-slate-200 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-bold text-slate-400 mr-1 flex items-center gap-1">
+            <Layers className="w-3.5 h-3.5" />
+            테마별 모아보기:
+          </span>
+          {categories.map((cat) => {
+            const isActive = selectedCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                  isActive
+                    ? 'bg-slate-900 text-white shadow-xs scale-[1.03]'
+                    : 'bg-slate-100 hover:bg-slate-200 text-slate-600'
+                }`}
+              >
+                <span>{cat.icon}</span>
+                <span>{cat.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      {/* 스크랩북 폴라로이드 그리드 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {photos.map((photo) => (
+      {/* 스크랩북 폴라로이드 그리드 (총 11장) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        {filteredPhotos.map((photo) => (
           <div
             key={photo.id}
             onClick={() => setSelectedPhoto(photo)}
@@ -128,11 +236,12 @@ export default function ActivityGallery({ onGoToForm }) {
                 src={photo.img}
                 alt={photo.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span className="bg-white/90 text-slate-900 px-3 py-1.5 rounded-full text-xs font-black shadow-md flex items-center gap-1">
                   <ZoomIn className="w-3.5 h-3.5" />
-                  사진 크게 보기
+                  크게 보기
                 </span>
               </div>
             </div>
