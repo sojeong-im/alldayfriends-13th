@@ -144,32 +144,32 @@ export default function App() {
   };
 
   const steps = [
-    { num: 1, title: '프로필' },
-    { num: 2, title: '취향·테마' },
-    { num: 3, title: '성향' },
-    { num: 4, title: '일정·확인' },
+    { num: 1, title: '기본 프로필', short: '프로필' },
+    { num: 2, title: '취향·테마', short: '테마' },
+    { num: 3, title: '모임 성향', short: '성향' },
+    { num: 4, title: '일정·확인', short: '일정' },
   ];
 
   return (
-    <div className="min-h-screen paper-grid py-6 sm:py-10 px-4 sm:px-6 relative selection:bg-[#1854F2] selection:text-white flex flex-col justify-between">
+    <div className="min-h-screen min-h-[100dvh] paper-grid py-4 sm:py-8 md:py-10 px-3 sm:px-6 relative selection:bg-[#1854F2] selection:text-white flex flex-col justify-between">
       {/* 장식 테이프 */}
       <div className="fixed top-12 left-6 w-16 h-7 tape-pink rotate-[-12deg] pointer-events-none hidden lg:block opacity-75" />
       <div className="fixed bottom-16 right-8 w-20 h-8 tape-yellow rotate-[14deg] pointer-events-none hidden lg:block opacity-75" />
 
-      {/* 🌟 1. 첫 진입 화면: 버튼만 먼저 시원하게 보임! */}
+      {/* 🌟 1. 첫 진입 화면: 버튼만 먼저 시원하게 보임! (모바일/아이패드/PC 반응형) */}
       {currentPage === 'home' && (
-        <div className="max-w-md w-full mx-auto my-auto py-12 sm:py-16 text-center space-y-8 animate-in fade-in zoom-in-95 duration-300">
+        <div className="max-w-md w-full mx-auto my-auto py-6 sm:py-12 md:py-16 text-center space-y-6 sm:space-y-8 animate-in fade-in zoom-in-95 duration-300">
           {/* 타이틀 로고 박스 */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-slate-900 polaroid-shadow relative">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-6 tape-yellow rotate-[-2deg] flex items-center justify-center">
+          <div className="bg-white rounded-3xl p-5 sm:p-8 border-2 border-slate-900 polaroid-shadow relative">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-6 tape-yellow rotate-[-2deg] flex items-center justify-center shadow-xs">
               <span className="text-[10px] font-bold text-amber-900">ALL DAY FRIENDS</span>
             </div>
 
-            <div className="w-14 h-14 rounded-2xl bg-[#1854F2] text-white flex items-center justify-center font-black font-marker text-2xl mx-auto shadow-md rotate-[-3deg] mt-2">
+            <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#1854F2] text-white flex items-center justify-center font-black font-marker text-2xl mx-auto shadow-md rotate-[-3deg] mt-1 sm:mt-2">
               13
             </div>
 
-            <h1 className="text-3xl sm:text-4xl font-black font-marker text-[#1854F2] tracking-wider uppercase mt-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black font-marker text-[#1854F2] tracking-wider uppercase mt-3 sm:mt-4">
               ALL DAY FRIENDS
             </h1>
             <p className="text-xs sm:text-sm font-extrabold text-slate-700 mt-1">
@@ -178,39 +178,39 @@ export default function App() {
           </div>
 
           {/* 🌟 메인 선택 버튼 2개 (원하는 페이지로 진입) */}
-          <div className="space-y-3.5">
+          <div className="space-y-3 sm:space-y-3.5">
             <button
               onClick={() => setCurrentPage('form')}
-              className="w-full p-5 rounded-3xl bg-[#1854F2] hover:bg-blue-700 text-white font-black text-base sm:text-lg flex items-center justify-between border-2 border-slate-900 shadow-md hover:shadow-xl transition-all transform active:scale-98 cursor-pointer"
+              className="w-full p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-[#1854F2] hover:bg-blue-700 text-white font-black text-base sm:text-lg flex items-center justify-between border-2 border-slate-900 shadow-md hover:shadow-xl transition-all transform active:scale-[0.98] cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <span className="text-2xl">📝</span>
+                <span className="text-2xl sm:text-3xl">📝</span>
                 <div className="text-left">
                   <div className="leading-tight">13기 동아리 신청하기</div>
                 </div>
               </div>
-              <ChevronRight className="w-6 h-6 stroke-[3]" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
             </button>
 
             <button
               onClick={() => setCurrentPage('gallery')}
-              className="w-full p-5 rounded-3xl bg-white hover:bg-slate-50 text-slate-900 font-black text-base sm:text-lg flex items-center justify-between border-2 border-slate-900 shadow-md hover:shadow-xl transition-all transform active:scale-98 cursor-pointer"
+              className="w-full p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-white hover:bg-slate-50 text-slate-900 font-black text-base sm:text-lg flex items-center justify-between border-2 border-slate-900 shadow-md hover:shadow-xl transition-all transform active:scale-[0.98] cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <span className="text-2xl">📸</span>
+                <span className="text-2xl sm:text-3xl">📸</span>
                 <div className="text-left">
                   <div className="leading-tight">활동 사진 둘러보기</div>
                 </div>
               </div>
-              <ChevronRight className="w-6 h-6 stroke-[3] text-slate-400" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3] text-slate-400" />
             </button>
           </div>
 
           {/* 포스터 보기 링크 */}
-          <div>
+          <div className="pt-1">
             <button
               onClick={() => setShowPosterModal(true)}
-              className="text-xs font-bold text-slate-500 hover:text-slate-800 underline decoration-slate-300 underline-offset-4 cursor-pointer inline-flex items-center gap-1"
+              className="text-xs sm:text-sm font-bold text-slate-500 hover:text-slate-800 underline decoration-slate-300 underline-offset-4 cursor-pointer inline-flex items-center gap-1.5 py-1"
             >
               <Eye className="w-3.5 h-3.5" />
               13기 포스터 크게 보기
@@ -279,8 +279,8 @@ export default function App() {
             </button>
           </div>
 
-          {/* 스텝 인디케이터 */}
-          <div className="grid grid-cols-4 gap-1.5">
+          {/* 스텝 인디케이터 (모바일/아이패드/PC 가독성) */}
+          <div className="grid grid-cols-4 gap-1 sm:gap-2">
             {steps.map((step) => {
               const isActive = currentStep === step.num;
               const isDone = currentStep > step.num;
@@ -288,27 +288,32 @@ export default function App() {
                 <button
                   key={step.num}
                   onClick={() => setCurrentStep(step.num)}
-                  className={`py-2 px-1 rounded-xl border-2 transition text-center text-xs font-bold cursor-pointer ${
+                  className={`py-2 px-1 sm:px-2 rounded-xl border-2 transition text-center text-xs font-bold cursor-pointer truncate ${
                     isActive
-                      ? 'bg-white border-[#1854F2] text-[#1854F2] shadow-xs'
+                      ? 'bg-white border-[#1854F2] text-[#1854F2] shadow-xs ring-2 ring-blue-100'
                       : isDone
                       ? 'bg-blue-50 border-blue-200 text-slate-700'
                       : 'bg-white/60 border-slate-200 text-slate-400 hover:bg-white'
                   }`}
                 >
-                  {isDone ? `✓ ${step.title}` : `${step.num}. ${step.title}`}
+                  <span className="sm:hidden">
+                    {isDone ? `✓ ${step.short}` : `${step.num}.${step.short}`}
+                  </span>
+                  <span className="hidden sm:inline">
+                    {isDone ? `✓ ${step.title}` : `${step.num}. ${step.title}`}
+                  </span>
                 </button>
               );
             })}
           </div>
 
-          {/* 메인 폼 그리드 (좌: 폼, 우: 크루패스) */}
-          <main className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            <div className="lg:col-span-7 bg-white rounded-3xl p-5 sm:p-7 border-2 border-slate-900 shadow-sm relative">
+          {/* 메인 폼 그리드 (모바일: 1열+플로팅패스, 아이패드·PC: 2열 나란히) */}
+          <main className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-start pb-24 md:pb-8">
+            <div className="md:col-span-7 bg-white rounded-3xl p-4 sm:p-6 md:p-7 border-2 border-slate-900 shadow-sm relative">
               <form onSubmit={handleSubmit}>
                 {/* STEP 1. 기본 프로필 */}
                 {currentStep === 1 && (
-                  <div className="space-y-5">
+                  <div className="space-y-4 sm:space-y-5">
                     <div className="border-b border-slate-100 pb-2.5">
                       <h3 className="text-base sm:text-lg font-black text-slate-900">
                         STEP 1. 기본 프로필
@@ -320,40 +325,44 @@ export default function App() {
                       <label className="text-xs sm:text-sm font-bold text-slate-800">
                         1. 이름 / 성별 / 나이 <span className="text-rose-500">*</span>
                       </label>
-                      <div className="grid grid-cols-3 gap-2">
-                        <input
-                          type="text"
-                          placeholder="이름"
-                          value={formData.name}
-                          onChange={(e) => handleTextChange('name', e.target.value)}
-                          className="w-full px-3 py-2.5 rounded-xl border-2 border-slate-200 focus:border-[#1854F2] focus:outline-none text-xs sm:text-sm font-medium"
-                          required
-                        />
-                        <div className="flex rounded-xl border-2 border-slate-200 overflow-hidden bg-slate-50 p-0.5">
-                          {['남', '여'].map((g) => (
-                            <button
-                              key={g}
-                              type="button"
-                              onClick={() => handleTextChange('gender', g)}
-                              className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
-                                formData.gender === g
-                                  ? 'bg-[#1854F2] text-white'
-                                  : 'text-slate-600 hover:bg-slate-200'
-                              }`}
-                            >
-                              {g}
-                            </button>
-                          ))}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <div>
+                          <input
+                            type="text"
+                            placeholder="이름"
+                            value={formData.name}
+                            onChange={(e) => handleTextChange('name', e.target.value)}
+                            className="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-200 focus:border-[#1854F2] focus:outline-none text-xs sm:text-sm font-medium"
+                            required
+                          />
                         </div>
-                        <input
-                          type="number"
-                          placeholder="나이"
-                          value={formData.age}
-                          onChange={(e) => handleTextChange('age', e.target.value)}
-                          className="w-full px-3 py-2.5 rounded-xl border-2 border-slate-200 focus:border-[#1854F2] focus:outline-none text-xs sm:text-sm font-medium"
-                          min="19"
-                          max="35"
-                        />
+                        <div className="grid grid-cols-2 sm:col-span-2 gap-2">
+                          <div className="flex rounded-xl border-2 border-slate-200 overflow-hidden bg-slate-50 p-0.5 h-[42px] items-center">
+                            {['남', '여'].map((g) => (
+                              <button
+                                key={g}
+                                type="button"
+                                onClick={() => handleTextChange('gender', g)}
+                                className={`flex-1 h-full rounded-lg text-xs font-bold transition cursor-pointer flex items-center justify-center ${
+                                  formData.gender === g
+                                    ? 'bg-[#1854F2] text-white shadow-xs'
+                                    : 'text-slate-600 hover:bg-slate-200'
+                                }`}
+                              >
+                                {g}
+                              </button>
+                            ))}
+                          </div>
+                          <input
+                            type="number"
+                            placeholder="나이"
+                            value={formData.age}
+                            onChange={(e) => handleTextChange('age', e.target.value)}
+                            className="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-200 focus:border-[#1854F2] focus:outline-none text-xs sm:text-sm font-medium"
+                            min="19"
+                            max="35"
+                          />
+                        </div>
                       </div>
                     </div>
 
@@ -362,35 +371,37 @@ export default function App() {
                       <label className="text-xs sm:text-sm font-bold text-slate-800">
                         2. 학교 / 학과 / 학년 <span className="text-rose-500">*</span>
                       </label>
-                      <div className="grid grid-cols-3 gap-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                         <input
                           type="text"
-                          placeholder="학교"
+                          placeholder="학교 (예: 연세대)"
                           value={formData.school}
                           onChange={(e) => handleTextChange('school', e.target.value)}
-                          className="w-full px-3 py-2.5 rounded-xl border-2 border-slate-200 focus:border-[#1854F2] focus:outline-none text-xs sm:text-sm font-medium"
+                          className="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-200 focus:border-[#1854F2] focus:outline-none text-xs sm:text-sm font-medium"
                           required
                         />
-                        <input
-                          type="text"
-                          placeholder="학과"
-                          value={formData.major}
-                          onChange={(e) => handleTextChange('major', e.target.value)}
-                          className="w-full px-3 py-2.5 rounded-xl border-2 border-slate-200 focus:border-[#1854F2] focus:outline-none text-xs sm:text-sm font-medium"
-                        />
-                        <select
-                          value={formData.grade}
-                          onChange={(e) => handleTextChange('grade', e.target.value)}
-                          className="w-full px-2 py-2.5 rounded-xl border-2 border-slate-200 focus:border-[#1854F2] focus:outline-none text-xs sm:text-sm font-medium bg-white"
-                        >
-                          <option value="">학년</option>
-                          <option value="1학년">1학년</option>
-                          <option value="2학년">2학년</option>
-                          <option value="3학년">3학년</option>
-                          <option value="4학년">4학년</option>
-                          <option value="휴학/졸업예정">휴학/졸업</option>
-                          <option value="기타">기타</option>
-                        </select>
+                        <div className="grid grid-cols-2 sm:col-span-2 gap-2">
+                          <input
+                            type="text"
+                            placeholder="학과"
+                            value={formData.major}
+                            onChange={(e) => handleTextChange('major', e.target.value)}
+                            className="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-200 focus:border-[#1854F2] focus:outline-none text-xs sm:text-sm font-medium"
+                          />
+                          <select
+                            value={formData.grade}
+                            onChange={(e) => handleTextChange('grade', e.target.value)}
+                            className="w-full px-2.5 py-2.5 rounded-xl border-2 border-slate-200 focus:border-[#1854F2] focus:outline-none text-xs sm:text-sm font-medium bg-white cursor-pointer"
+                          >
+                            <option value="">학년</option>
+                            <option value="1학년">1학년</option>
+                            <option value="2학년">2학년</option>
+                            <option value="3학년">3학년</option>
+                            <option value="4학년">4학년</option>
+                            <option value="휴학/졸업예정">휴학/졸업</option>
+                            <option value="기타">기타</option>
+                          </select>
+                        </div>
                       </div>
                     </div>
 
@@ -440,7 +451,7 @@ export default function App() {
                       <button
                         type="button"
                         onClick={() => setCurrentStep(2)}
-                        className="px-5 py-2.5 rounded-xl bg-[#1854F2] hover:bg-blue-700 text-white font-extrabold text-xs sm:text-sm flex items-center gap-1.5 transition cursor-pointer"
+                        className="w-full sm:w-auto px-5 py-3 sm:py-2.5 rounded-xl bg-[#1854F2] hover:bg-blue-700 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition cursor-pointer shadow-xs active:scale-[0.98]"
                       >
                         다음: 테마 선택
                         <ChevronRight className="w-4 h-4" />
@@ -464,14 +475,14 @@ export default function App() {
                         5. 들어가고 싶은 테마 <span className="text-rose-500">* (1개)</span>
                       </label>
 
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
                         {THEMES.map((theme) => {
                           const isSelected = formData.theme === theme.id;
                           return (
                             <div
                               key={theme.id}
                               onClick={() => handleTextChange('theme', theme.id)}
-                              className={`p-3 rounded-xl border-2 cursor-pointer transition ${
+                              className={`p-3 rounded-xl border-2 cursor-pointer transition active:scale-[0.99] ${
                                 isSelected
                                   ? 'border-slate-900 bg-slate-900 text-white shadow-xs'
                                   : 'border-slate-200 bg-white hover:border-slate-300 text-slate-800'
@@ -566,7 +577,7 @@ export default function App() {
                       <label className="text-xs sm:text-sm font-bold text-slate-800">
                         8. 놀 때 나의 포지션 <span className="text-blue-600 text-xs font-normal">(복수 선택)</span>
                       </label>
-                      <div className="grid grid-cols-2 gap-1.5">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2">
                         {PLAY_POSITIONS.map((pos) => {
                           const isSelected = formData.positions.includes(pos);
                           return (
@@ -574,9 +585,9 @@ export default function App() {
                               key={pos}
                               type="button"
                               onClick={() => toggleArrayItem('positions', pos)}
-                              className={`p-2.5 rounded-xl border-2 text-left text-xs font-bold transition flex items-center justify-between cursor-pointer ${
+                              className={`p-2.5 rounded-xl border-2 text-left text-xs font-bold transition flex items-center justify-between cursor-pointer active:scale-98 ${
                                 isSelected
-                                  ? 'border-slate-900 bg-slate-900 text-white'
+                                  ? 'border-slate-900 bg-slate-900 text-white shadow-xs'
                                   : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700'
                               }`}
                             >
@@ -600,14 +611,14 @@ export default function App() {
                             <div
                               key={style}
                               onClick={() => handleTextChange('firstMeeting', style)}
-                              className={`p-2.5 rounded-xl border-2 cursor-pointer transition flex items-center justify-between text-xs ${
+                              className={`p-2.5 sm:p-3 rounded-xl border-2 cursor-pointer transition flex items-center justify-between text-xs sm:text-sm active:scale-[0.99] ${
                                 isSelected
                                   ? 'border-[#1854F2] bg-blue-50 text-blue-900 font-bold'
                                   : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700'
                               }`}
                             >
                               <span>{style}</span>
-                              <span className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${isSelected ? 'border-[#1854F2] bg-[#1854F2]' : 'border-slate-300'}`}>
+                              <span className={`w-3.5 h-3.5 rounded-full border shrink-0 flex items-center justify-center ${isSelected ? 'border-[#1854F2] bg-[#1854F2]' : 'border-slate-300'}`}>
                                 {isSelected && <div className="w-1 h-1 rounded-full bg-white" />}
                               </span>
                             </div>
@@ -643,9 +654,9 @@ export default function App() {
                               key={r}
                               type="button"
                               onClick={() => toggleArrayItem('reasons', r)}
-                              className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition border cursor-pointer ${
+                              className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition border cursor-pointer active:scale-95 ${
                                 isSelected
-                                  ? 'bg-amber-400 text-slate-900 border-amber-500'
+                                  ? 'bg-amber-400 text-slate-900 border-amber-500 shadow-xs'
                                   : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'
                               }`}
                             >
@@ -656,18 +667,18 @@ export default function App() {
                       </div>
                     </div>
 
-                    <div className="pt-2 flex justify-between">
+                    <div className="pt-2 flex justify-between items-center gap-2">
                       <button
                         type="button"
                         onClick={() => setCurrentStep(2)}
-                        className="px-4 py-2.5 rounded-xl border-2 border-slate-200 text-slate-600 font-bold text-xs transition cursor-pointer"
+                        className="px-4 py-2.5 sm:py-3 rounded-xl border-2 border-slate-200 text-slate-600 font-bold text-xs sm:text-sm transition cursor-pointer active:scale-95"
                       >
                         이전
                       </button>
                       <button
                         type="button"
                         onClick={() => setCurrentStep(4)}
-                        className="px-5 py-2.5 rounded-xl bg-[#1854F2] hover:bg-blue-700 text-white font-extrabold text-xs sm:text-sm flex items-center gap-1.5 transition cursor-pointer"
+                        className="px-5 py-2.5 sm:py-3 rounded-xl bg-[#1854F2] hover:bg-blue-700 text-white font-extrabold text-xs sm:text-sm flex items-center gap-1.5 transition cursor-pointer shadow-xs active:scale-[0.98]"
                       >
                         다음: 일정 & 확인
                         <ChevronRight className="w-4 h-4" />
@@ -678,53 +689,55 @@ export default function App() {
 
                 {/* STEP 4. 일정 & 약속 */}
                 {currentStep === 4 && (
-                  <div className="space-y-5">
+                  <div className="space-y-4 sm:space-y-5">
                     <div className="border-b border-slate-100 pb-2.5">
                       <h3 className="text-base sm:text-lg font-black text-slate-900">
                         STEP 4. 활동 일정 & 확인
                       </h3>
                     </div>
 
-                    {/* Q11. 활동 가능 요일과 시간대 매트릭스 그리드 */}
+                    {/* Q11. 활동 가능 요일과 시간대 매트릭스 그리드 (가로스크롤 대응) */}
                     <div className="space-y-1.5">
                       <label className="text-xs sm:text-sm font-bold text-slate-800">
                         11. 활동 가능 시간대 <span className="text-blue-600 text-xs font-normal">(중복 선택)</span>
                       </label>
 
-                      <div className="border-2 border-slate-900 rounded-xl overflow-hidden bg-slate-50">
-                        <div className="grid grid-cols-8 text-center bg-slate-900 text-white text-[11px] font-bold py-1.5">
-                          <div className="text-slate-400">시간</div>
-                          {DAYS.map((d) => (
-                            <div key={d} className={d === '토' ? 'text-blue-300' : d === '일' ? 'text-rose-300' : ''}>
-                              {d}
+                      <div className="overflow-x-auto -mx-1 sm:mx-0 pb-1">
+                        <div className="min-w-[340px] sm:min-w-full border-2 border-slate-900 rounded-xl overflow-hidden bg-slate-50">
+                          <div className="grid grid-cols-8 text-center bg-slate-900 text-white text-[11px] font-bold py-1.5">
+                            <div className="text-slate-400">시간</div>
+                            {DAYS.map((d) => (
+                              <div key={d} className={d === '토' ? 'text-blue-300' : d === '일' ? 'text-rose-300' : ''}>
+                                {d}
+                              </div>
+                            ))}
+                          </div>
+
+                          {TIMES.map((time) => (
+                            <div key={time} className="grid grid-cols-8 border-t border-slate-200">
+                              <div className="py-2.5 px-0.5 sm:px-1 text-center font-bold text-[10px] sm:text-[11px] bg-slate-100 text-slate-600 flex items-center justify-center">
+                                {time}
+                              </div>
+                              {DAYS.map((day) => {
+                                const isChecked = !!formData.availableSlots[`${day}_${time}`];
+                                return (
+                                  <button
+                                    key={`${day}_${time}`}
+                                    type="button"
+                                    onClick={() => toggleSlot(day, time)}
+                                    className={`py-2.5 flex items-center justify-center border-l border-slate-200 transition cursor-pointer active:scale-95 ${
+                                      isChecked
+                                        ? 'bg-[#1854F2] text-white font-black'
+                                        : 'bg-white hover:bg-blue-50 text-slate-400'
+                                    }`}
+                                  >
+                                    {isChecked ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : <span className="text-[10px]">+</span>}
+                                  </button>
+                                );
+                              })}
                             </div>
                           ))}
                         </div>
-
-                        {TIMES.map((time) => (
-                          <div key={time} className="grid grid-cols-8 border-t border-slate-200">
-                            <div className="py-2.5 px-1 text-center font-bold text-[11px] bg-slate-100 text-slate-600 flex items-center justify-center">
-                              {time}
-                            </div>
-                            {DAYS.map((day) => {
-                              const isChecked = !!formData.availableSlots[`${day}_${time}`];
-                              return (
-                                <button
-                                  key={`${day}_${time}`}
-                                  type="button"
-                                  onClick={() => toggleSlot(day, time)}
-                                  className={`py-2.5 flex items-center justify-center border-l border-slate-200 transition cursor-pointer ${
-                                    isChecked
-                                      ? 'bg-[#1854F2] text-white font-black'
-                                      : 'bg-white hover:bg-blue-50 text-slate-400'
-                                  }`}
-                                >
-                                  {isChecked ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : <span className="text-[10px]">+</span>}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        ))}
                       </div>
                     </div>
 
@@ -733,14 +746,14 @@ export default function App() {
                       <label className="text-xs sm:text-sm font-bold text-slate-800">
                         12. 월 활동 참여 빈도 <span className="text-rose-500">*</span>
                       </label>
-                      <div className="grid grid-cols-2 gap-1.5">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                         {PARTICIPATION_FREQUENCIES.map((freq) => {
                           const isSelected = formData.frequency === freq;
                           return (
                             <div
                               key={freq}
                               onClick={() => handleTextChange('frequency', freq)}
-                              className={`p-2.5 rounded-xl border-2 cursor-pointer transition flex items-center justify-between text-xs ${
+                              className={`p-2.5 rounded-xl border-2 cursor-pointer transition flex items-center justify-between text-xs active:scale-[0.99] ${
                                 isSelected
                                   ? 'border-[#1854F2] bg-blue-50 text-blue-900 font-bold'
                                   : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700'
@@ -771,10 +784,10 @@ export default function App() {
                     </div>
 
                     {/* 지원 전 확인사항 */}
-                    <div className="pt-2 bg-amber-50/70 p-3.5 rounded-2xl border-2 border-amber-300/80 space-y-2.5">
+                    <div className="pt-2 bg-amber-50/70 p-3.5 sm:p-4 rounded-2xl border-2 border-amber-300/80 space-y-2.5">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-1.5">
-                          <AlertCircle className="w-4 h-4 text-amber-800" />
+                          <AlertCircle className="w-4 h-4 text-amber-800 shrink-0" />
                           <h4 className="text-xs sm:text-sm font-black text-amber-950">
                             지원 전 확인사항
                           </h4>
@@ -782,22 +795,22 @@ export default function App() {
                         <button
                           type="button"
                           onClick={handleAllAgree}
-                          className="text-[11px] font-bold text-amber-900 bg-amber-200 hover:bg-amber-300 px-2.5 py-1 rounded-lg transition cursor-pointer"
+                          className="text-[11px] font-bold text-amber-900 bg-amber-200 hover:bg-amber-300 px-2.5 py-1 rounded-lg transition cursor-pointer active:scale-95"
                         >
                           모두 동의
                         </button>
                       </div>
 
-                      <div className="space-y-2">
+                      <div className="space-y-1.5">
                         {CHECKLIST_ITEMS.map((item) => {
                           const isChecked = !!formData.agreedItems[item.id];
                           return (
-                            <label
+                            <div
                               key={item.id}
-                              className="flex items-start gap-2 cursor-pointer group select-none"
+                              onClick={() => toggleChecklist(item.id)}
+                              className="flex items-start gap-2.5 p-1.5 sm:p-2 rounded-xl hover:bg-amber-100/50 cursor-pointer group select-none transition active:scale-[0.99]"
                             >
                               <div
-                                onClick={() => toggleChecklist(item.id)}
                                 className={`w-4 h-4 mt-0.5 rounded border-2 flex items-center justify-center shrink-0 transition ${
                                   isChecked
                                     ? 'bg-[#1854F2] border-[#1854F2] text-white'
@@ -807,30 +820,29 @@ export default function App() {
                                 {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
                               </div>
                               <span
-                                onClick={() => toggleChecklist(item.id)}
-                                className={`text-xs leading-tight ${
+                                className={`text-xs leading-snug flex-1 ${
                                   isChecked ? 'text-amber-950 font-bold' : 'text-amber-900'
                                 }`}
                               >
                                 {item.text}
                               </span>
-                            </label>
+                            </div>
                           );
                         })}
                       </div>
                     </div>
 
-                    <div className="pt-2 flex justify-between items-center">
+                    <div className="pt-3 flex justify-between items-center gap-2">
                       <button
                         type="button"
                         onClick={() => setCurrentStep(3)}
-                        className="px-4 py-2.5 rounded-xl border-2 border-slate-200 text-slate-600 font-bold text-xs transition cursor-pointer"
+                        className="px-4 py-2.5 sm:py-3 rounded-xl border-2 border-slate-200 text-slate-600 font-bold text-xs sm:text-sm transition cursor-pointer active:scale-95"
                       >
                         이전
                       </button>
                       <button
                         type="submit"
-                        className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#1854F2] to-blue-600 hover:from-blue-700 hover:to-blue-800 text-white font-black text-xs sm:text-sm flex items-center gap-1.5 shadow-md transition cursor-pointer"
+                        className="px-5 sm:px-6 py-3 rounded-xl bg-gradient-to-r from-[#1854F2] to-blue-600 hover:from-blue-700 hover:to-blue-800 text-white font-black text-xs sm:text-sm flex items-center gap-1.5 shadow-md transition cursor-pointer active:scale-[0.98]"
                       >
                         <Send className="w-4 h-4" />
                         13기 지원서 제출하기
@@ -841,8 +853,8 @@ export default function App() {
               </form>
             </div>
 
-            {/* 우측 실시간 크루 패스 프리뷰 */}
-            <div className="hidden lg:block lg:col-span-5 sticky top-8 space-y-3">
+            {/* 우측 실시간 크루 패스 프리뷰 (아이패드·PC) */}
+            <div className="hidden md:block md:col-span-5 sticky top-6 space-y-3">
               <div className="flex items-center justify-between px-1">
                 <span className="text-xs font-black text-slate-500 uppercase tracking-wider flex items-center gap-1">
                   <Sparkles className="w-3.5 h-3.5 text-amber-500" />
@@ -859,18 +871,18 @@ export default function App() {
         </div>
       )}
 
-      {/* 모바일 하단 플로팅 패스 보기 버튼 (폼 모드일 때만) */}
+      {/* 모바일 하단 플로팅 패스 보기 버튼 (스마트폰 전용: md 미만일 때만) */}
       {currentPage === 'form' && (
-        <div className="lg:hidden fixed bottom-4 left-4 right-4 z-30">
+        <div className="md:hidden fixed bottom-4 left-4 right-4 z-30">
           <button
             onClick={() => setShowMobilePass(true)}
-            className="w-full py-3 px-4 bg-slate-900 text-white rounded-2xl shadow-xl flex items-center justify-between border border-slate-700 cursor-pointer"
+            className="w-full py-3.5 px-5 bg-slate-900 text-white rounded-2xl shadow-xl flex items-center justify-between border border-slate-700 cursor-pointer active:scale-[0.98] transition"
           >
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-yellow-400" />
-              <span className="text-xs font-bold">내 크루 패스 보기</span>
+              <span className="text-xs sm:text-sm font-black">내 13기 크루 패스 보기</span>
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1.5">
               <span className="text-xs font-mono font-bold text-amber-300">{progress}%</span>
               <ChevronRight className="w-4 h-4" />
             </div>

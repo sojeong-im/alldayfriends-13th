@@ -59,3 +59,24 @@
     0 8px 10px -6px rgba(0, 0, 0, 0.06),
     0 0 0 1px rgba(0, 0, 0, 0.04);
 }
+
+/* 스크롤바 숨기기 유틸 */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 모바일 iOS 포커스 시 브라우저 강제 확대 방지 (16px 기준) */
+@media (max-width: 640px) {
+  input[type="text"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="email"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}

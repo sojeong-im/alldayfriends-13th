@@ -84,16 +84,16 @@ export default function ActivityGallery({ onGoToForm }) {
 
   return (
     <div className="space-y-6">
-      {/* 갤러리 상단: 불필요한 설명문 전부 삭제, 필터와 신청 버튼만 깔끔하게 */}
-      <div className="bg-white rounded-3xl p-4 sm:p-5 border-2 border-slate-900 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-1.5">
+      {/* 갤러리 상단: 필터와 신청 버튼 */}
+      <div className="bg-white rounded-3xl p-3 sm:p-4 md:p-5 border-2 border-slate-900 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 sm:pb-0 w-full sm:w-auto">
           {categories.map((cat) => {
             const isActive = selectedCategory === cat.id;
             return (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer shrink-0 active:scale-95 ${
                   isActive
                     ? 'bg-slate-900 text-white shadow-xs'
                     : 'bg-slate-100 hover:bg-slate-200 text-slate-600'
@@ -107,24 +107,24 @@ export default function ActivityGallery({ onGoToForm }) {
 
         <button
           onClick={onGoToForm}
-          className="px-4 py-2 rounded-xl bg-[#1854F2] hover:bg-blue-700 text-white font-black text-xs flex items-center justify-center gap-1.5 transition cursor-pointer shrink-0"
+          className="px-4 py-2 rounded-xl bg-[#1854F2] hover:bg-blue-700 text-white font-black text-xs flex items-center justify-center gap-1.5 transition cursor-pointer shrink-0 active:scale-95 shadow-xs"
         >
           <span>13기 신청하기</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </div>
 
-      {/* 스크랩북 폴라로이드 그리드: 사진이 돋보이고 텍스트는 1줄만! */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+      {/* 스크랩북 폴라로이드 그리드 (모바일 2열 / 아이패드 3열 / PC 4열) */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
         {filteredPhotos.map((photo) => (
           <div
             key={photo.id}
             onClick={() => setSelectedPhoto(photo)}
-            className={`group bg-white p-2.5 sm:p-3 pb-3 sm:pb-4 rounded-2xl polaroid-shadow border-2 border-slate-900 transition-all duration-200 hover:scale-[1.03] hover:shadow-lg cursor-pointer relative`}
+            className={`group bg-white p-2.5 sm:p-3 pb-3 sm:pb-4 rounded-2xl polaroid-shadow border-2 border-slate-900 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] hover:shadow-lg cursor-pointer relative`}
           >
             {/* 상단 미니 마스킹 테이프 */}
-            <div className={`absolute -top-2.5 left-1/2 -translate-x-1/2 w-20 h-5 ${photo.tape} flex items-center justify-center z-10 shadow-xs`}>
-              <span className="text-[8px] font-black tracking-wider text-slate-800 uppercase">
+            <div className={`absolute -top-2.5 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-4.5 sm:h-5 ${photo.tape} flex items-center justify-center z-10 shadow-xs`}>
+              <span className="text-[7.5px] sm:text-[8px] font-black tracking-wider text-slate-800 uppercase">
                 {photo.tapeText}
               </span>
             </div>
@@ -147,7 +147,7 @@ export default function ActivityGallery({ onGoToForm }) {
 
             {/* 사진 하단: 1줄 제목만 깔끔하게 */}
             <div className="mt-2 text-center px-1">
-              <h3 className="text-xs font-extrabold text-slate-900 truncate">
+              <h3 className="text-[11px] sm:text-xs font-extrabold text-slate-900 truncate">
                 {photo.title}
               </h3>
             </div>
@@ -155,30 +155,30 @@ export default function ActivityGallery({ onGoToForm }) {
         ))}
       </div>
 
-      {/* 사진 상세 보기 라이트박스 모달 */}
+      {/* 사진 상세 보기 라이트박스 모달 (모바일/태블릿 최적화) */}
       {selectedPhoto && (
         <div 
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4"
           onClick={() => setSelectedPhoto(null)}
         >
           <div 
-            className="bg-white max-w-xl w-full rounded-3xl overflow-hidden border-2 border-slate-900 shadow-2xl relative"
+            className="bg-white max-w-xl w-full max-h-[92dvh] rounded-3xl overflow-hidden border-2 border-slate-900 shadow-2xl relative flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="p-3.5 bg-slate-900 text-white flex items-center justify-between">
+            <div className="p-3 sm:p-3.5 bg-slate-900 text-white flex items-center justify-between shrink-0">
               <span className="font-marker tracking-wide text-xs sm:text-sm truncate pr-2">{selectedPhoto.title}</span>
               <button
                 onClick={() => setSelectedPhoto(null)}
-                className="w-6 h-6 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white cursor-pointer"
+                className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white cursor-pointer active:scale-95"
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
-            <div className="p-3 bg-slate-100 flex justify-center max-h-[70vh] overflow-hidden">
+            <div className="p-3 bg-slate-100 flex items-center justify-center flex-1 overflow-hidden">
               <img
                 src={selectedPhoto.img}
                 alt={selectedPhoto.title}
-                className="max-h-full max-w-full object-contain rounded-xl"
+                className="max-h-[65vh] w-auto max-w-full rounded-xl object-contain shadow-sm"
               />
             </div>
             <div className="p-4 bg-white border-t border-slate-200 flex items-center justify-between gap-3">
