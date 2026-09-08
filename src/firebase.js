@@ -1,18 +1,32 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getAnalytics, isSupported } from 'firebase/analytics';
 
-// Firebase 콘솔(프로젝트 설정 > 내 앱 > SDK 설정 및 구성)에서 복사한 firebaseConfig를
-// .env 파일에 넣거나 아래 객체에 직접 붙여넣으시면 됩니다.
+// 올데프 13기 공식 Firebase 설정
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "YOUR_API_KEY",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "YOUR_AUTH_DOMAIN",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "YOUR_PROJECT_ID",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "YOUR_STORAGE_BUCKET",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "YOUR_MESSAGING_SENDER_ID",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "YOUR_APP_ID"
+  apiKey: "AIzaSyDThHDfHPkP7GvoJXN9hESGKmGnQbZV4JI",
+  authDomain: "alldef-3fb83.firebaseapp.com",
+  projectId: "alldef-3fb83",
+  storageBucket: "alldef-3fb83.firebasestorage.app",
+  messagingSenderId: "405382096851",
+  appId: "1:405382096851:web:e3e8bd39fa23fba0e77126",
+  measurementId: "G-ZL2DQ33KMN"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Firestore
 export const db = getFirestore(app);
+
+// Initialize Analytics (브라우저 환경 지원 확인 후 안전하게 초기화)
+export let analytics = null;
+if (typeof window !== 'undefined') {
+  isSupported().then((supported) => {
+    if (supported) {
+      analytics = getAnalytics(app);
+    }
+  }).catch(() => {});
+}
+
 export default app;
