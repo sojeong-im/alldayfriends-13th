@@ -439,7 +439,7 @@ export default function App() {
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                         <input
                           type="text"
-                          placeholder="학교 (예: 연세대)"
+                          placeholder="학교"
                           value={formData.school}
                           onChange={(e) => handleTextChange('school', e.target.value)}
                           className="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-200 focus:border-[#1854F2] focus:outline-none text-xs sm:text-sm font-medium"
