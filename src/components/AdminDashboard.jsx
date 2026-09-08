@@ -242,7 +242,7 @@ export default function AdminDashboard({ onGoHome }) {
                 inputMode="numeric"
                 pattern="[0-9]*"
                 maxLength={10}
-                placeholder="비밀번호 입력 (00347)"
+                placeholder="비밀번호를 입력하세요"
                 value={passwordInput}
                 onChange={(e) => {
                   setPasswordInput(e.target.value);
