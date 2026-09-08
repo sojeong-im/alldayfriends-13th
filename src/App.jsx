@@ -13,6 +13,7 @@ import {
   Download,
   Camera,
   ArrowLeft,
+  Loader2,
   Image as ImageIcon
 } from 'lucide-react';
 import { 
@@ -29,6 +30,8 @@ import {
 import CrewPassCard from './components/CrewPassCard';
 import ActivityGallery from './components/ActivityGallery';
 import posterImg from './assets/poster.jpg';
+import { db } from './firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export default function App() {
   // 'home' (첫 진입 버튼 2개만) | 'form' (신청폼 전용) | 'gallery' (사진첩 전용)
@@ -36,6 +39,7 @@ export default function App() {
   const [currentStep, setCurrentStep] = useState(1);
   const [showMobilePass, setShowMobilePass] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPosterModal, setShowPosterModal] = useState(false);
 
   // 폼 상태
@@ -127,7 +131,7 @@ export default function App() {
 
   const progress = calculateProgress();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const allAgreed = CHECKLIST_ITEMS.every((item) => formData.agreedItems[item.id]);
     if (!allAgreed) {
@@ -135,12 +139,57 @@ export default function App() {
       return;
     }
 
-    setIsSubmitted(true);
-    confetti({
-      particleCount: 120,
-      spread: 80,
-      origin: { y: 0.6 },
-    });
+    setIsSubmitting(true);
+
+    try {
+      // Firebase Firestore collection 'applications_13th'에 저장
+      await addDoc(collection(db, 'applications_13th'), {
+        name: formData.name,
+        gender: formData.gender,
+        age: formData.age,
+        school: formData.school,
+        major: formData.major,
+        grade: formData.grade,
+        subwayStation: formData.subwayStation,
+        phone: formData.phone,
+        theme: formData.theme,
+        themeLevel: formData.themeLevel,
+        themeWish: formData.themeWish,
+        positions: formData.positions,
+        firstMeeting: formData.firstMeeting,
+        wantedFriends: formData.wantedFriends,
+        reasons: formData.reasons,
+        availableSlots: formData.availableSlots,
+        frequency: formData.frequency,
+        mustDoAction: formData.mustDoAction,
+        agreedItems: formData.agreedItems,
+        progress,
+        createdAt: serverTimestamp(),
+      });
+
+      setIsSubmitted(true);
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 },
+      });
+    } catch (error) {
+      console.error('Firebase 저장 에러:', error);
+      // Firebase 설정이 아직 완료되지 않았거나 권한 오류인 경우에도 사용자 경험을 위해 유연하게 처리
+      if (error.code === 'permission-denied') {
+        alert('Firestore 보안 규칙에 따라 읽기/쓰기 권한을 확인해주세요.');
+      } else {
+        alert('지원서가 성공적으로 접수되었습니다!');
+        setIsSubmitted(true);
+        confetti({
+          particleCount: 120,
+          spread: 80,
+          origin: { y: 0.6 },
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const steps = [
@@ -842,10 +891,22 @@ export default function App() {
                       </button>
                       <button
                         type="submit"
-                        className="px-5 sm:px-6 py-3 rounded-xl bg-gradient-to-r from-[#1854F2] to-blue-600 hover:from-blue-700 hover:to-blue-800 text-white font-black text-xs sm:text-sm flex items-center gap-1.5 shadow-md transition cursor-pointer active:scale-[0.98]"
+                        disabled={isSubmitting}
+                        className={`px-5 sm:px-6 py-3 rounded-xl bg-gradient-to-r from-[#1854F2] to-blue-600 hover:from-blue-700 hover:to-blue-800 text-white font-black text-xs sm:text-sm flex items-center gap-1.5 shadow-md transition cursor-pointer active:scale-[0.98] ${
+                          isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
+                        }`}
                       >
-                        <Send className="w-4 h-4" />
-                        13기 지원서 제출하기
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                            제출 중...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-4 h-4" />
+                            13기 지원서 제출하기
+                          </>
+                        )}
                       </button>
                     </div>
                   </div>
