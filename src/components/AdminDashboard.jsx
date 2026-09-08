@@ -371,22 +371,81 @@ export default function AdminDashboard({ onGoHome }) {
 
         <div className="bg-white p-4 sm:p-5 rounded-2xl border-2 border-slate-900 shadow-xs">
           <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">DB 연결 상태</span>
-          <div className="text-sm sm:text-base font-extrabold text-emerald-600 mt-2 flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            FIRESTORE LIVE
-          </div>
+          {fetchError ? (
+            <div className="text-xs sm:text-sm font-extrabold text-amber-600 mt-2 flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
+              규칙 설정 필요
+            </div>
+          ) : (
+            <div className="text-sm sm:text-base font-extrabold text-emerald-600 mt-2 flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+              FIRESTORE LIVE
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Firestore 에러 배너 (권한 미설정 시 안내) */}
+      {/* Firestore 에러 배너 (권한 미설정 시 안내 및 원클릭 바로가기) */}
       {fetchError && (
-        <div className="bg-rose-50 border-2 border-rose-300 p-4 rounded-2xl text-xs text-rose-900 flex items-start gap-2.5">
-          <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-          <div className="space-y-1">
-            <p className="font-bold">Firestore 읽기 권한 확인이 필요합니다.</p>
-            <p className="text-rose-700">
-              Firebase 콘솔 → Firestore Database → 규칙(Rules) 탭에서 <code className="bg-rose-200/60 px-1 py-0.5 rounded font-mono">allow read: if true;</code>가 허용되어 있는지 확인해주세요.
-            </p>
+        <div className="bg-amber-50 border-2 border-amber-300 p-4 sm:p-5 rounded-2xl text-xs text-amber-950 space-y-3">
+          <div className="flex items-start gap-2.5">
+            <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <p className="font-black text-sm text-amber-900">
+                Firestore Database 활성화 또는 읽기 권한 설정이 필요합니다
+              </p>
+              <p className="text-amber-800 leading-relaxed">
+                Firebase는 새 프로젝트 생성 시 보안을 위해 데이터베이스 접근이 기본 차단되어 있습니다.
+                아래 <strong>[규칙 바로가기]</strong> 링크에서 <strong>[게시]</strong>를 누르시면 즉시 지원자 목록이 실시간으로 뜹니다!
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white/90 p-3 rounded-xl border border-amber-200 font-mono text-[11px] text-slate-800 space-y-1">
+            <div className="text-[10px] font-bold text-slate-500">Firebase 콘솔 &gt; Firestore Database &gt; 규칙(Rules)에 붙여넣을 내용:</div>
+            <pre className="overflow-x-auto p-2 bg-slate-900 text-emerald-400 rounded-lg">
+{`rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}`}
+            </pre>
+          </div>
+
+          <div className="flex flex-wrap gap-2 pt-1">
+            <a
+              href="https://console.firebase.google.com/project/alldef-3fb83/firestore/rules"
+              target="_blank"
+              rel="noreferrer"
+              className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs inline-flex items-center gap-1.5 transition"
+            >
+              <span>🔗 Firebase 콘솔 규칙 탭 바로가기</span>
+            </a>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(`rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}`);
+                alert('규칙 코드가 클립보드에 복사되었습니다! Firebase 콘솔 규칙 탭에 붙여넣고 [게시]를 눌러주세요.');
+              }}
+              className="px-3 py-2 rounded-xl bg-amber-200 hover:bg-amber-300 text-amber-900 font-bold text-xs transition cursor-pointer"
+            >
+              📋 규칙 코드 복사
+            </button>
+            <button
+              onClick={fetchApplicants}
+              className="px-3 py-2 rounded-xl bg-white border border-amber-300 text-amber-900 font-bold text-xs transition cursor-pointer hover:bg-amber-100"
+            >
+              🔄 설정 후 새로고침
+            </button>
           </div>
         </div>
       )}
